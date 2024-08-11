@@ -28,6 +28,13 @@ public class QuestionController {
     @PostMapping("add")
     public  ResponseEntity<String> addQuestion(@RequestBody Questions question ){
            return  questionService.addQuestion(question);
+    }
+
+    @GetMapping("generate")
+    public ResponseEntity<List<Integer>> getQuestionsForQuiz(@RequestParam String catName, @RequestParam Integer numOfQuestions){
+        return questionService.getQuestionsForQuiz(catName,numOfQuestions);
 
     }
+
+    
 }
