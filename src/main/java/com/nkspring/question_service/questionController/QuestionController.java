@@ -1,6 +1,7 @@
 package com.nkspring.question_service.questionController;
 
 
+import com.nkspring.question_service.model.QuestionWrapper;
 import com.nkspring.question_service.model.Questions;
 import com.nkspring.question_service.questionService.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class QuestionController {
 
     }
 
-    
+    @PostMapping("getQuestions")
+    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> questionIds){
+        return questionService.getQuestionsFromId(questionIds);
+    }
+
+
 }
