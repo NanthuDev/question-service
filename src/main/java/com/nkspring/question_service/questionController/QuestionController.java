@@ -3,6 +3,7 @@ package com.nkspring.question_service.questionController;
 
 import com.nkspring.question_service.model.QuestionWrapper;
 import com.nkspring.question_service.model.Questions;
+import com.nkspring.question_service.model.Response;
 import com.nkspring.question_service.questionService.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,30 +17,37 @@ public class QuestionController {
 
     @Autowired
     QuestionService questionService;
+
     @GetMapping("allQuestions")
-    public ResponseEntity <List<Questions>> getAllQuestions(){
+    public ResponseEntity<List<Questions>> getAllQuestions() {
         return questionService.getAllQuestions();
     }
 
     @GetMapping("category/{category}")
-    public List<Questions> getQuestionByCategory(@PathVariable String category){
-         return questionService.getQuestionsByCategory(category);
+    public List<Questions> getQuestionByCategory(@PathVariable String category) {
+        return questionService.getQuestionsByCategory(category);
     }
 
     @PostMapping("add")
-    public  ResponseEntity<String> addQuestion(@RequestBody Questions question ){
-           return  questionService.addQuestion(question);
+    public ResponseEntity<String> addQuestion(@RequestBody Questions question) {
+        return questionService.addQuestion(question);
     }
 
     @GetMapping("generate")
-    public ResponseEntity<List<Integer>> getQuestionsForQuiz(@RequestParam String catName, @RequestParam Integer numOfQuestions){
-        return questionService.getQuestionsForQuiz(catName,numOfQuestions);
+    public ResponseEntity<List<Integer>> getQuestionsForQuiz(@RequestParam String catName, @RequestParam Integer numOfQuestions) {
+        return questionService.getQuestionsForQuiz(catName, numOfQuestions);
 
     }
 
     @PostMapping("getQuestions")
-    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> questionIds){
+    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> questionIds) {
         return questionService.getQuestionsFromId(questionIds);
+    }
+
+    @PostMapping("getScore")
+    public ResponseEntity<Integer> getScore(@RequestBody List<Response> responses) {
+        return questionService.getScore(responses);
+
     }
 
 
