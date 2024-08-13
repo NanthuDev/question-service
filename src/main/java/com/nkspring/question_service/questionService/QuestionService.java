@@ -51,7 +51,9 @@ public class QuestionService {
         for (Questions question : questions) {
             QuestionWrapper wrapper = new QuestionWrapper();
             wrapper.setId(question.getId());
+            wrapper.setCategory(question.getCategory());
             wrapper.setQuestion(question.getQuestion());
+
             wrapper.setOption1(question.getOption1());
             wrapper.setOption2(question.getOption2());
             wrapper.setOption3(question.getOption3());
